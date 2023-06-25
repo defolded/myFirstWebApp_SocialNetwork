@@ -1,0 +1,31 @@
+.nav {
+  display: grid;
+  grid-area: n;
+  height: fit-content;
+  text-align: left;
+  font-size: large;
+  font-weight: 400;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: brown;
+}
+
+.nav img {
+  width: 80px;
+  height: 80px;
+}
+
+.nav ul {
+  margin-left: 7.4rem;
+  list-style-type: none;
+  list-style-position: outside;
+}
+
+.nav ul li:hover {
+  list-style-type: initial;
+  opacity: 30%;
+}
+
+.profile {
+  text-align: right;
+  margin-right: 0.8rem;
+}
