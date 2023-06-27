@@ -5,9 +5,9 @@ import MyPosts from "../MyPosts/MyPosts";
 const Content = () => {
   return (
     <div className={styles.content}>
-      <container className={styles.wrapper}>
+      <div className={styles.wrapper}>
         <MyPosts />
-      </container>
+      </div>
     </div>
   );
 };

@@ -6,7 +6,15 @@
   font-size: large;
   font-weight: 400;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: brown;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 50%;
+  margin-right: 8%;
 }
 
 .nav img {
@@ -14,18 +22,58 @@
   height: 80px;
 }
 
+.profile {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
 .nav ul {
-  margin-left: 7.4rem;
   list-style-type: none;
   list-style-position: outside;
 }
 
-.nav ul li:hover {
-  list-style-type: initial;
-  opacity: 30%;
+.nav ul li {
+  margin: 10px 0;
 }
 
-.profile {
-  text-align: right;
-  margin-right: 0.8rem;
+.nav ul li a {
+  opacity: 60%;
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+.nav ul li a:hover {
+  opacity: 100%;
+}
+
+.nav ul li {
+  display: block;
+  position: relative;
+  color: #0099e6;
+}
+
+.nav ul li::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #0099e6;
+  transform-origin: bottom right;
+  transition: transform 0.15s ease-out;
+}
+
+.nav ul li:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
