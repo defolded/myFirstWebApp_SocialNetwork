@@ -15,7 +15,7 @@ const Navbar = () => {
         </div>
         <nav className={styles.menu}>
           <NavLink
-            to={`content`}
+            to={`posts`}
             style={({ isActive, isPending }) => {
               return {
                 opacity: isActive ? 100 : "",
@@ -23,7 +23,7 @@ const Navbar = () => {
               };
             }}
           >
-            Profile
+            Posts
           </NavLink>
           <NavLink
             to={`messages`}

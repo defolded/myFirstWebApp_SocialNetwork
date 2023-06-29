@@ -1,12 +1,3 @@
 .content {
-  margin: 10px;
-  width: 70%;
-  background-color: #eeeeee;
-}
-
-.wrapper {
-  margin: 25px;
   display: flex;
-  justify-content: left;
-  top: 50%;
 }
