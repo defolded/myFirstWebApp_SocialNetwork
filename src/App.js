@@ -11,7 +11,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/content" element={<Content />} />
-          <Route path="/messages" element={<Messages />} />
+          <Route path="/messages/*" element={<Messages />} />
         </Routes>
       </div>
     </BrowserRouter>
