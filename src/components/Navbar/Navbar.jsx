@@ -14,73 +14,61 @@ const Navbar = () => {
           <p>Jack Hannon</p>
         </div>
         <nav className={styles.menu}>
-          <ul>
-            <li>
-              <NavLink
-                to={`content`}
-                style={({ isActive, isPending }) => {
-                  return {
-                    opacity: isActive ? 100 : "",
-                    color: isPending ? "red" : "black",
-                  };
-                }}
-              >
-                Profile
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to={`messages`}
-                style={({ isActive, isPending }) => {
-                  return {
-                    opacity: isActive ? 100 : "",
-                    color: isPending ? "red" : "black",
-                  };
-                }}
-              >
-                Messages
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to={"news"}
-                style={({ isActive, isPending }) => {
-                  return {
-                    opacity: isActive ? 100 : "",
-                    color: isPending ? "red" : "black",
-                  };
-                }}
-              >
-                News
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to={"music"}
-                style={({ isActive, isPending }) => {
-                  return {
-                    opacity: isActive ? 100 : "",
-                    color: isPending ? "red" : "black",
-                  };
-                }}
-              >
-                Music
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to={"settings"}
-                style={({ isActive, isPending }) => {
-                  return {
-                    opacity: isActive ? 100 : "",
-                    color: isPending ? "red" : "black",
-                  };
-                }}
-              >
-                Settings
-              </NavLink>
-            </li>
-          </ul>
+          <NavLink
+            to={`content`}
+            style={({ isActive, isPending }) => {
+              return {
+                opacity: isActive ? 100 : "",
+                color: isPending ? "red" : "black",
+              };
+            }}
+          >
+            Profile
+          </NavLink>
+          <NavLink
+            to={`messages`}
+            style={({ isActive, isPending }) => {
+              return {
+                opacity: isActive ? 100 : "",
+                color: isPending ? "red" : "black",
+              };
+            }}
+          >
+            Messages
+          </NavLink>
+          <NavLink
+            to={"news"}
+            style={({ isActive, isPending }) => {
+              return {
+                opacity: isActive ? 100 : "",
+                color: isPending ? "red" : "black",
+              };
+            }}
+          >
+            News
+          </NavLink>
+          <NavLink
+            to={"music"}
+            style={({ isActive, isPending }) => {
+              return {
+                opacity: isActive ? 100 : "",
+                color: isPending ? "red" : "black",
+              };
+            }}
+          >
+            Music
+          </NavLink>
+          <NavLink
+            to={"settings"}
+            style={({ isActive, isPending }) => {
+              return {
+                opacity: isActive ? 100 : "",
+                color: isPending ? "red" : "black",
+              };
+            }}
+          >
+            Settings
+          </NavLink>
         </nav>
       </div>
     </div>

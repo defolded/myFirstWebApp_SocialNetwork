@@ -9,6 +9,11 @@ const MyPosts = () => {
         <div className={styles.posts}>
           <MyPost text="Post 1: Some simple text." />
           <MyPost text="Post 2: Another simple text." />
+          <MyPost text="Post 2: Another simple text." />
+          <MyPost text="Post 2: Another simple text." />
+          <MyPost text="Post 2: Another simple text." />
+          <MyPost text="Post 2: Another simple text." />
+          <MyPost text="Post 2: Another simple text." />
         </div>
       </div>
     </div>

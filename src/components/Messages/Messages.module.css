@@ -1,11 +1,12 @@
 .content {
-  display: grid;
-  grid-area: c;
-  background-color: antiquewhite;
+  margin: 10px;
+  width: 70%;
+  background-color: #eeeeee;
 }
 
 .wrapper {
+  margin: 25px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  top: 50%;
 }
