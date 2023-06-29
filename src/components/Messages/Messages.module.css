@@ -1,11 +1,3 @@
 .content {
-  display: grid;
-  grid-area: c;
-  background-color: antiquewhite;
-}
-
-.wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
