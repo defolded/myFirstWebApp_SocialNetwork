@@ -16,6 +16,12 @@ const Messages = (props) => {
           <MyMessage text={m.message} />
         ))}
       </div>
+      <div className={styles.userInput}>
+        <textarea className={styles.text}></textarea>
+        <button type="submit" className={styles.btn}>
+          Submit
+        </button>
+      </div>
     </div>
   );
 };

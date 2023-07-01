@@ -6,7 +6,6 @@ const MyPosts = (props) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.posts}>
-        {console.log(props)}
         {props.posts.map((p) => (
           <MyPost
             profilePicture={p.profilePicture}
@@ -14,6 +13,12 @@ const MyPosts = (props) => {
             text={p.message}
           />
         ))}
+      </div>
+      <div className={styles.userInput}>
+        <textarea className={styles.text}></textarea>
+        <button type="submit" className={styles.btn}>
+          Submit
+        </button>
       </div>
     </div>
   );
