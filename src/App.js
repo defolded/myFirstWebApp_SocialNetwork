@@ -1,4 +1,5 @@
 import "./App.css";
+import styles from "./Button.module.css";
 import Messages from "./components/Messages/Messages";
 import MyPosts from "./components/MyPosts/MyPosts";
 import Navbar from "./components/Navbar/Navbar";
@@ -27,6 +28,12 @@ function App() {
                 }
               />
             </Routes>
+          </div>
+          <div className={styles.userInput}>
+            <textarea className={styles.text}></textarea>
+            <button type="submit" className={styles.btn}>
+              Submit
+            </button>
           </div>
         </div>
       </div>
