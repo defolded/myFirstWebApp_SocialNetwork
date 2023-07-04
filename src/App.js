@@ -1,12 +1,10 @@
 import "./App.css";
-import styles from "./Button.module.css";
 import Messages from "./components/Messages/Messages";
 import MyPosts from "./components/MyPosts/MyPosts";
 import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import state from "./redux/state";
 
-function App() {
+function App(props) {
   return (
     <BrowserRouter>
       <div className="App">
@@ -16,24 +14,23 @@ function App() {
             <Routes>
               <Route
                 path="/posts"
-                element={<MyPosts posts={state.posts.posts} />}
+                element={
+                  <MyPosts
+                    state={props.state.posts}
+                    dispatch={props.dispatch}
+                  />
+                }
               />
               <Route
                 path="/messages/*"
                 element={
                   <Messages
-                    dialogs={state.messages.dialogs}
-                    messages={state.messages.messages}
+                    state={props.state.messages}
+                    dispatch={props.dispatch}
                   />
                 }
               />
             </Routes>
-          </div>
-          <div className={styles.userInput}>
-            <textarea className={styles.text}></textarea>
-            <button type="submit" className={styles.btn}>
-              Submit
-            </button>
           </div>
         </div>
       </div>
