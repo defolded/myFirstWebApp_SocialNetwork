@@ -1,6 +1,6 @@
 import "./App.css";
-import Messages from "./components/Messages/Messages";
-import MyPosts from "./components/MyPosts/MyPosts";
+import MessagesContainer from "./components/Messages/MessagesContainer";
+import MyPostsContainer from "./components/MyPosts/MyPostsContainer";
 import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -14,21 +14,11 @@ function App(props) {
             <Routes>
               <Route
                 path="/posts"
-                element={
-                  <MyPosts
-                    state={props.state.posts}
-                    dispatch={props.dispatch}
-                  />
-                }
+                element={<MyPostsContainer store={props.store} />}
               />
               <Route
                 path="/messages/*"
-                element={
-                  <Messages
-                    state={props.state.messages}
-                    dispatch={props.dispatch}
-                  />
-                }
+                element={<MessagesContainer store={props.store} />}
               />
             </Routes>
           </div>

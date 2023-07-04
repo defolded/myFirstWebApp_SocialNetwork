@@ -2,21 +2,13 @@ import React from "react";
 import styles from "./MyPosts.module.css";
 import MyPost from "./SinglePost/SinglePost";
 import b from "../.././Button.module.css";
-import {
-  addPostActionCreator,
-  onPostChangeActionCreator,
-} from "../../redux/posts-reducer";
 
 const MyPosts = (props) => {
   let newPostElement = React.createRef();
 
-  const addPost = () => {
-    props.dispatch(addPostActionCreator());
-  };
+  const addPost = () => props.addPost();
 
-  let onPostChange = () => {
-    props.dispatch(onPostChangeActionCreator(newPostElement.current.value));
-  };
+  let onPostChange = () => props.updateText(newPostElement.current.value);
 
   return (
     <div className={styles.wrapper}>

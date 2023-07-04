@@ -1,5 +1,5 @@
-import messagesReducer from "./messages-reducer";
-import postsReducer from "./posts-reducer";
+import messagesReducer from "./messagesReducer";
+import postsReducer from "./postsReducer";
 
 let store = {
   _state: {

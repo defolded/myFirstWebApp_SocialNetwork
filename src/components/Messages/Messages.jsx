@@ -3,23 +3,13 @@ import styles from "./Messages.module.css";
 import MyMessage from "./MyMessage/MyMessage";
 import Person from "./Person/Person";
 import b from "../.././Button.module.css";
-import {
-  addMessageActionCreator,
-  onMessageChangeActionCreator,
-} from "../../redux/messages-reducer";
 
 const Messages = (props) => {
   let newMessageElement = React.createRef();
 
-  const addMessage = () => {
-    props.dispatch(addMessageActionCreator());
-  };
+  const addMessage = () => props.addMessage();
 
-  let onMessageChange = () => {
-    props.dispatch(
-      onMessageChangeActionCreator(newMessageElement.current.value)
-    );
-  };
+  let onMessageChange = () => props.updateText(newMessageElement.current.value);
 
   return (
     <div className={styles.content}>
