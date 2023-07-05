@@ -4,21 +4,25 @@ import {
   addPostActionCreator,
   onPostChangeActionCreator,
 } from "../../redux/postsReducer";
+import { connect } from "react-redux";
 
-const MyPostsContainer = (props) => {
-  const addPost = () => props.store.dispatch(addPostActionCreator());
-
-  let onPostChange = (text) =>
-    props.store.dispatch(onPostChangeActionCreator(text));
-
-  return (
-    <MyPosts
-      addPost={addPost}
-      updateText={onPostChange}
-      state={props.store.getState().posts}
-      newPostText={props.store.getState().posts}
-    />
-  );
+let mapStateToProps = (state) => {
+  return {
+    state: state.posts,
+    newPostText: state.posts.newPostText,
+  };
 };
 
-export default MyPostsContainer;
+let mapDispatchToProps = (dispatch) => {
+  return {
+    addPost: () => dispatch(addPostActionCreator()),
+    updateText: (text) => dispatch(onPostChangeActionCreator(text)),
+  };
+};
+
+const SuperMyPostsContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MyPosts);
+
+export default SuperMyPostsContainer;

@@ -18,6 +18,7 @@ const MyPosts = (props) => {
             profilePicture={p.profilePicture}
             username={p.username}
             text={p.message}
+            key={p.id}
           />
         ))}
       </div>

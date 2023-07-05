@@ -4,21 +4,25 @@ import {
   addMessageActionCreator,
   onMessageChangeActionCreator,
 } from "../../redux/messagesReducer";
+import { connect } from "react-redux";
 
-const MessagesContainer = (props) => {
-  const addMessage = () => props.store.dispatch(addMessageActionCreator());
-
-  let onMessageChange = (text) =>
-    props.store.dispatch(onMessageChangeActionCreator(text));
-
-  return (
-    <Messages
-      addMessage={addMessage}
-      updateText={onMessageChange}
-      state={props.store.getState().messages}
-      newMessageText={props.store.getState().messages}
-    />
-  );
+let mapStateToProps = (state) => {
+  return {
+    state: state.messages,
+    newMessageText: state.messages.newMessageText,
+  };
 };
 
-export default MessagesContainer;
+let mapDispatchToProps = (dispatch) => {
+  return {
+    addMessage: () => dispatch(addMessageActionCreator()),
+    updateText: (text) => dispatch(onMessageChangeActionCreator(text)),
+  };
+};
+
+const SuperMessagesContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Messages);
+
+export default SuperMessagesContainer;

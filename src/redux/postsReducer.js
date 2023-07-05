@@ -38,7 +38,7 @@ let initialState = {
 
 const postsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_POST:
+    case ADD_POST: {
       let newPost = {
         id: 5,
         profilePicture:
@@ -47,12 +47,15 @@ const postsReducer = (state = initialState, action) => {
         message: state.newPostText,
       };
 
-      state.posts.push(newPost);
-      state.newPostText = "";
-      return state;
-    case UPDATE_NEW_POST_TEXT:
-      state.newPostText = action.text;
-      return state;
+      return {
+        ...state,
+        posts: [...state.posts, newPost],
+        newPostText: "",
+      };
+    }
+    case UPDATE_NEW_POST_TEXT: {
+      return { ...state, newPostText: action.text };
+    }
 
     default:
       return state;

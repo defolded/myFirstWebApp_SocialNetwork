@@ -16,12 +16,12 @@ const Messages = (props) => {
       <div className={styles.wrapper}>
         <div className={styles.dialogs}>
           {props.state.dialogs.map((p) => (
-            <Person id={p.id} name={p.name} />
+            <Person id={p.id} name={p.name} key={p.id} />
           ))}
         </div>
         <div className={styles.messages}>
           {props.state.messages.map((m) => (
-            <MyMessage text={m.message} />
+            <MyMessage text={m.message} key={m.id} />
           ))}
         </div>
       </div>
