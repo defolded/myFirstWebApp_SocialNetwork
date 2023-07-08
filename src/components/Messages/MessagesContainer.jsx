@@ -1,4 +1,3 @@
-import React from "react";
 import Messages from "./Messages";
 import {
   addMessageActionCreator,

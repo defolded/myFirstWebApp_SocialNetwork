@@ -9,7 +9,6 @@ const MyPosts = (props) => {
   const addPost = () => props.addPost();
 
   let onPostChange = () => props.updateText(newPostElement.current.value);
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.postsList}>

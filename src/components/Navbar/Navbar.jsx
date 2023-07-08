@@ -69,6 +69,17 @@ const Navbar = () => {
           >
             Settings
           </NavLink>
+          <NavLink
+            to={"users"}
+            style={({ isActive, isPending }) => {
+              return {
+                opacity: isActive ? 100 : "",
+                color: isPending ? "red" : "black",
+              };
+            }}
+          >
+            Users
+          </NavLink>
         </nav>
       </div>
     </div>
