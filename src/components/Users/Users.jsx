@@ -6,10 +6,15 @@ import userPhoto from "../../assets/profile-picture.jpg";
 
 class Users extends React.Component {
   componentDidMount() {
+    window.state = this.props.state;
+
     axios
-      .get("https://social-network.samuraijs.com/api/1.0/users")
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.state.currentPage}&count=${this.props.state.pageSize}`
+      )
       .then((res) => {
         this.props.setUsers(res.data.items);
+        this.props.setTotalUsersCount(res.data.totalCount);
       });
   }
 
@@ -20,9 +25,49 @@ class Users extends React.Component {
     this.props.unfollowUser(userId);
   };
 
+  setCurrentPage = (currentPage) => {
+    this.props.setCurrentPage(currentPage);
+    axios
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.state.pageSize}`
+      )
+      .then((res) => {
+        this.props.setUsers(res.data.items);
+      });
+  };
+
   render() {
+    let pageCount = Math.ceil(
+      this.props.state.totalUsersCount / this.props.state.pageSize
+    );
+
+    let pages = [];
+
+    for (let i = 1; i <= pageCount; i++) {
+      if (pages.length < 10) {
+        pages.push(i);
+      }
+    }
+
     return (
       <div>
+        <div>
+          {pages.map((page) => {
+            return (
+              <span
+                className={
+                  this.props.currentPage === page ? styles.selectedPage : ""
+                }
+                onClick={() => {
+                  this.setCurrentPage(page);
+                }}
+              >
+                {page}
+              </span>
+            );
+          })}
+        </div>
+
         {this.props.state.users.map((user) => (
           <User
             profilePicture={
