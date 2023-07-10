@@ -87,22 +87,22 @@ const usersReducer = (state = initialState, action) => {
   }
 };
 
-export const followUserActionCreator = (userId) => ({
+export const followUser = (userId) => ({
   type: FOLLOW_USER,
   userId,
 });
 
-export const unfollowUserActionCreator = (userId) => ({
+export const unfollowUser = (userId) => ({
   type: UNFOLLOW_USER,
   userId,
 });
 
-export const setUsersActionCreator = (users) => ({
+export const setUsers = (users) => ({
   type: SET_USERS,
   users,
 });
 
-export const setCurrentPageActionCreator = (currentPage) => ({
+export const setCurrentPage = (currentPage) => ({
   type: SET_CURRENT_PAGE,
   currentPage,
 });

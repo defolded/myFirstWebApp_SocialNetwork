@@ -1,8 +1,8 @@
 import {
-  followUserActionCreator,
-  setCurrentPageActionCreator,
-  setUsersActionCreator,
-  unfollowUserActionCreator,
+  followUser,
+  setCurrentPage,
+  setUsers,
+  unfollowUser,
   setTotalUsersCount,
 } from "../../redux/usersReducer";
 import { connect } from "react-redux";
@@ -57,21 +57,12 @@ let mapStateToProps = (state) => {
   };
 };
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    followUser: (userId) => dispatch(followUserActionCreator(userId)),
-    unfollowUser: (userId) => dispatch(unfollowUserActionCreator(userId)),
-    setUsers: (users) => dispatch(setUsersActionCreator(users)),
-    setCurrentPage: (currentPage) =>
-      dispatch(setCurrentPageActionCreator(currentPage)),
-    setTotalUsersCount: (usersCount) =>
-      dispatch(setTotalUsersCount(usersCount)),
-  };
-};
-
-const SuperUsersContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(UsersAPIComponent);
+const SuperUsersContainer = connect(mapStateToProps, {
+  followUser,
+  unfollowUser,
+  setUsers,
+  setCurrentPage,
+  setTotalUsersCount,
+})(UsersAPIComponent);
 
 export default SuperUsersContainer;
