@@ -2,14 +2,14 @@ import "./App.css";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import MyPostsContainer from "./components/MyPosts/MyPostsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NavbarContainer from "./components/Navbar/NavbarContainer";
 
 function App(props) {
   return (
     <BrowserRouter>
       <div className="App">
-        <Navbar />
+        <NavbarContainer store={props.store} />
         <div className="Content">
           <div className="Wrapper">
             <Routes>

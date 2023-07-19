@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Users.module.css";
 import userPhoto from "../../assets/profile-picture.jpg";
 import User from "./User";
+import Profile from "./Profile";
 
 const Users = (props) => {
   const followUser = (userId) => {
@@ -22,8 +23,16 @@ const Users = (props) => {
     }
   }
 
+  if (!props.profile) {
+    return <></>;
+  }
+
   return (
     <div>
+      <Profile
+        userPhoto={props.profile.photos.small}
+        userName={props.profile.fullName}
+      />
       <div>
         {pages.map((page) => {
           return (

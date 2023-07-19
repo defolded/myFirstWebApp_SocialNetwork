@@ -4,6 +4,8 @@ const SET_USERS = "SET-USERS";
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
 const SET_TOTAL_USERS_COUNT = "SET-TOTAL-USERS-COUNT";
 
+const SET_PROFILE = "SET-PROFILE";
+
 let initialState = {
   users: [
     {
@@ -43,6 +45,7 @@ let initialState = {
   pageSize: 5,
   totalUsersCount: 0,
   currentPage: 1,
+  profile: null,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -82,6 +85,11 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         totalUsersCount: action.usersCount,
       };
+    case SET_PROFILE:
+      return {
+        ...state,
+        profile: action.profile,
+      };
     default:
       return state;
   }
@@ -110,6 +118,11 @@ export const setCurrentPage = (currentPage) => ({
 export const setTotalUsersCount = (usersCount) => ({
   type: SET_TOTAL_USERS_COUNT,
   usersCount,
+});
+
+export const setProfile = (profile) => ({
+  type: SET_PROFILE,
+  profile,
 });
 
 export default usersReducer;

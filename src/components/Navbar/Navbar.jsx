@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <div className={styles.nav}>
       <div className={styles.wrapper}>
@@ -80,6 +80,21 @@ const Navbar = () => {
           >
             Users
           </NavLink>
+          {props.isAuth ? (
+            props.login
+          ) : (
+            <NavLink
+              to={"login"}
+              style={({ isActive, isPending }) => {
+                return {
+                  opacity: isActive ? 100 : "",
+                  color: isPending ? "red" : "black",
+                };
+              }}
+            >
+              Sign In
+            </NavLink>
+          )}
         </nav>
       </div>
     </div>
