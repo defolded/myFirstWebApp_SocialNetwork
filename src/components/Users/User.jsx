@@ -1,9 +1,12 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const User = (props) => {
   return (
     <div>
-      <img src={props.profilePicture} height="80" width="80" alt="profile" />
+      <NavLink to={`users/${props.userId}`}>
+        <img src={props.profilePicture} height="80" width="80" alt="profile" />
+      </NavLink>
       <h3>{props.username}</h3>
       {props.isFollowed ? (
         <button onClick={() => props.unfollowUser(props.userId)}>

@@ -22,7 +22,7 @@ function App(props) {
                 element={<MessagesContainer store={props.store} />}
               />
               <Route
-                path="/users"
+                path="/users/*"
                 element={<UsersContainer store={props.store} />}
               />
             </Routes>

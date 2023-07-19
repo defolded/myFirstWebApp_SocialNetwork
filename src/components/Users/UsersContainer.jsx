@@ -4,6 +4,7 @@ import {
   setUsers,
   unfollowUser,
   setTotalUsersCount,
+  setProfile,
 } from "../../redux/usersReducer";
 import { connect } from "react-redux";
 import React from "react";
@@ -19,6 +20,11 @@ class UsersAPIComponent extends React.Component {
       .then((res) => {
         this.props.setUsers(res.data.items);
         this.props.setTotalUsersCount(res.data.totalCount);
+      });
+    axios
+      .get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+      .then((res) => {
+        this.props.setProfile(res.data);
       });
   }
 
@@ -63,6 +69,7 @@ const SuperUsersContainer = connect(mapStateToProps, {
   setUsers,
   setCurrentPage,
   setTotalUsersCount,
+  setProfile,
 })(UsersAPIComponent);
 
 export default SuperUsersContainer;
