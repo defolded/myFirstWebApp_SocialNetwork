@@ -3,14 +3,37 @@ import styles from "./Users.module.css";
 import userPhoto from "../../assets/profile-picture.jpg";
 import User from "./User";
 import Profile from "./Profile";
+import axios from "axios";
 
 const Users = (props) => {
   const followUser = (userId) => {
-    props.followUser(userId);
+    axios
+      .post(
+        `https://social-network.samuraijs.com/api/1.0/follow/${userId}`,
+        {},
+        {
+          withCredentials: true,
+          headers: { "API-KEY": "32917441-15a2-4acb-9883-86eaa186129a" },
+        }
+      )
+      .then((res) => {
+        if (res.data.resultCode === 0) {
+          props.followUser(userId);
+        }
+      });
   };
 
   const unfollowUser = (userId) => {
-    props.unfollowUser(userId);
+    axios
+      .delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {
+        withCredentials: true,
+        headers: { "API-KEY": "32917441-15a2-4acb-9883-86eaa186129a" },
+      })
+      .then((res) => {
+        if (res.data.resultCode === 0) {
+          props.unfollowUser(userId);
+        }
+      });
   };
 
   let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);

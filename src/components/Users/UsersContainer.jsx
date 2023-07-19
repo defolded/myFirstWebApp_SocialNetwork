@@ -15,7 +15,10 @@ class UsersAPIComponent extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.state.currentPage}&count=${this.props.state.pageSize}`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.state.currentPage}&count=${this.props.state.pageSize}`,
+        {
+          withCredentials: true,
+        }
       )
       .then((res) => {
         this.props.setUsers(res.data.items);
@@ -33,7 +36,10 @@ class UsersAPIComponent extends React.Component {
     this.props.setCurrentPage(currentPage);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.state.pageSize}`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.state.pageSize}`,
+        {
+          withCredentials: true,
+        }
       )
       .then((res) => {
         this.props.setUsers(res.data.items);
