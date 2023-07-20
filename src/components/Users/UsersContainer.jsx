@@ -5,6 +5,8 @@ import {
   follow,
   unfollow,
   getProfile,
+  getUserStatus,
+  setUserStatus,
 } from "../../redux/usersReducer";
 import { connect } from "react-redux";
 import React from "react";
@@ -19,7 +21,8 @@ class UsersAPIComponent extends React.Component {
       this.props.state.pageSize
     );
 
-    this.props.getProfile(2);
+    this.props.getProfile(29625);
+    this.props.getUserStatus(29625);
   }
 
   setCurrentPage = (currentPage) => {
@@ -39,6 +42,8 @@ class UsersAPIComponent extends React.Component {
         isFetching={this.props.state.isFetching}
         follow={this.props.follow}
         unfollow={this.props.unfollow}
+        status={this.props.state.status}
+        setUserStatus={this.props.setUserStatus}
       />
     );
   }
@@ -52,6 +57,7 @@ let mapStateToProps = (state) => {
     currentPage: state.currentPage,
     profile: state.profile,
     isFetching: state.isFetching,
+    status: state.status,
   };
 };
 
@@ -63,6 +69,8 @@ export default compose(
     follow,
     unfollow,
     getProfile,
+    getUserStatus,
+    setUserStatus,
   }),
   withAuthRedirect
 )(UsersAPIComponent);

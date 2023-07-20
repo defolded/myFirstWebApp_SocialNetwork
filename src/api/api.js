@@ -13,16 +13,26 @@ export const usersAPI = {
       .then((res) => res.data);
   },
 
-  getProfile(profileId = 2) {
-    return instance.get(`profile/${profileId}`).then((res) => res.data);
-  },
-
   follow(userId) {
     return instance.post(`follow/${userId}`);
   },
 
   unfollow(userId) {
     return instance.delete(`follow/${userId}`);
+  },
+};
+
+export const profileAPI = {
+  getProfile(profileId = 2) {
+    return instance.get(`profile/${profileId}`).then((res) => res.data);
+  },
+
+  getStatus(profileId) {
+    return instance.get(`profile/status/${profileId}`);
+  },
+
+  updateStatus(status) {
+    return instance.put(`profile/status`, { status });
   },
 };
 

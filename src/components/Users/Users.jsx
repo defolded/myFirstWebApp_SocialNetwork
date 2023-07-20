@@ -32,6 +32,8 @@ const Users = (props) => {
       <Profile
         userPhoto={props.profile.photos.small}
         userName={props.profile.fullName}
+        status={props.status}
+        setUserStatus={props.setUserStatus}
       />
       <div>
         {pages.map((page) => {

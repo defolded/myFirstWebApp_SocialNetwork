@@ -1,4 +1,4 @@
-import { usersAPI } from "../api/api";
+import { profileAPI, usersAPI } from "../api/api";
 
 const FOLLOW_USER = "FOLLOW-USER";
 const UNFOLLOW_USER = "UNFOLLOW-USER";
@@ -8,6 +8,8 @@ const SET_TOTAL_USERS_COUNT = "SET-TOTAL-USERS-COUNT";
 const TOGGLE_ISFETCHING = "TOGGLE-ISFETCHING";
 
 const SET_PROFILE = "SET-PROFILE";
+const SET_STATUS = "SET-STATUS";
+const UPDATE_STATUS = "UPDATE-STATUS";
 
 let initialState = {
   users: [
@@ -49,6 +51,7 @@ let initialState = {
   totalUsersCount: 0,
   currentPage: 1,
   profile: null,
+  status: null,
   isFetching: null,
 };
 
@@ -99,6 +102,11 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         isFetching: action.isFetching,
       };
+    case SET_STATUS:
+      return {
+        ...state,
+        status: action.status,
+      };
     default:
       return state;
   }
@@ -139,6 +147,11 @@ export const toggleIsFetching = (isFetching) => ({
   isFetching,
 });
 
+export const setStatus = (status) => ({
+  type: SET_STATUS,
+  status,
+});
+
 export const getUsers = (currentPage, pageSize) => {
   return (dispatch) => {
     usersAPI.getUsers(currentPage, pageSize).then((res) => {
@@ -174,8 +187,26 @@ export const unfollow = (userId) => {
 
 export const getProfile = (profileId) => {
   return (dispatch) => {
-    usersAPI.getProfile(profileId).then((res) => {
+    profileAPI.getProfile(profileId).then((res) => {
       dispatch(setProfile(res));
+    });
+  };
+};
+
+export const getUserStatus = (profileId) => {
+  return (dispatch) => {
+    profileAPI.getStatus(profileId).then((res) => {
+      dispatch(setStatus(res.data));
+    });
+  };
+};
+
+export const setUserStatus = (status) => {
+  return (dispatch) => {
+    profileAPI.updateStatus(status).then((res) => {
+      if (res.data.resultCode === 0) {
+        dispatch(setStatus(status));
+      }
     });
   };
 };
