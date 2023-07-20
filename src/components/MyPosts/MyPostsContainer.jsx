@@ -1,6 +1,7 @@
 import MyPosts from "./MyPosts";
 import { addPost, onPostChange } from "../../redux/postsReducer";
 import { connect } from "react-redux";
+import { compose } from "redux";
 
 let mapStateToProps = (state) => {
   return {
@@ -16,9 +17,4 @@ let mapDispatchToProps = (dispatch) => {
   };
 };
 
-const SuperMyPostsContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MyPosts);
-
-export default SuperMyPostsContainer;
+export default compose(connect(mapStateToProps, mapDispatchToProps))(MyPosts);

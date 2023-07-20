@@ -1,49 +1,29 @@
 import {
-  followUser,
-  setCurrentPage,
-  setUsers,
-  unfollowUser,
-  setTotalUsersCount,
   setProfile,
+  toggleIsFetching,
+  getUsers,
+  follow,
+  unfollow,
+  getProfile,
 } from "../../redux/usersReducer";
 import { connect } from "react-redux";
 import React from "react";
-import axios from "axios";
 import Users from "./Users";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 class UsersAPIComponent extends React.Component {
   componentDidMount() {
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.state.currentPage}&count=${this.props.state.pageSize}`,
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        this.props.setUsers(res.data.items);
-        this.props.setTotalUsersCount(res.data.totalCount);
-      });
+    this.props.getUsers(
+      this.props.state.currentPage,
+      this.props.state.pageSize
+    );
 
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
-      .then((res) => {
-        this.props.setProfile(res.data);
-      });
+    this.props.getProfile(2);
   }
 
   setCurrentPage = (currentPage) => {
-    this.props.setCurrentPage(currentPage);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.state.pageSize}`,
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        this.props.setUsers(res.data.items);
-      });
+    this.props.getUsers(currentPage, this.props.state.pageSize);
   };
 
   render() {
@@ -54,9 +34,11 @@ class UsersAPIComponent extends React.Component {
         totalUsersCount={this.props.state.totalUsersCount}
         pageSize={this.props.state.pageSize}
         currentPage={this.props.state.currentPage}
-        followUser={this.props.followUser}
-        unfollowUser={this.props.unfollowUser}
         profile={this.props.state.profile}
+        toggleIsFetching={this.props.toggleIsFetching}
+        isFetching={this.props.state.isFetching}
+        follow={this.props.follow}
+        unfollow={this.props.unfollow}
       />
     );
   }
@@ -69,16 +51,18 @@ let mapStateToProps = (state) => {
     totalUsersCount: state.totalUsersCount,
     currentPage: state.currentPage,
     profile: state.profile,
+    isFetching: state.isFetching,
   };
 };
 
-const SuperUsersContainer = connect(mapStateToProps, {
-  followUser,
-  unfollowUser,
-  setUsers,
-  setCurrentPage,
-  setTotalUsersCount,
-  setProfile,
-})(UsersAPIComponent);
-
-export default SuperUsersContainer;
+export default compose(
+  connect(mapStateToProps, {
+    setProfile,
+    toggleIsFetching,
+    getUsers,
+    follow,
+    unfollow,
+    getProfile,
+  }),
+  withAuthRedirect
+)(UsersAPIComponent);

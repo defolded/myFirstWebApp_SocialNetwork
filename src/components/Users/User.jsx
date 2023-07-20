@@ -9,11 +9,23 @@ const User = (props) => {
       </NavLink>
       <h3>{props.username}</h3>
       {props.isFollowed ? (
-        <button onClick={() => props.unfollowUser(props.userId)}>
+        <button
+          disabled={props.isFetching === props.userId}
+          onClick={() => {
+            props.unfollowUser(props.userId);
+          }}
+        >
           Unfollow
         </button>
       ) : (
-        <button onClick={() => props.followUser(props.userId)}>Follow</button>
+        <button
+          disabled={props.isFetching === props.userId}
+          onClick={() => {
+            props.followUser(props.userId);
+          }}
+        >
+          Follow
+        </button>
       )}
       <p>{props.message}</p>
       <br />

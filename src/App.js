@@ -4,6 +4,7 @@ import MyPostsContainer from "./components/MyPosts/MyPostsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
+import LoginContainer from "./components/Login/LoginContainer";
 
 function App(props) {
   return (
@@ -24,6 +25,10 @@ function App(props) {
               <Route
                 path="/users"
                 element={<UsersContainer store={props.store} />}
+              />
+              <Route
+                path="/login"
+                element={<LoginContainer store={props.store} />}
               />
             </Routes>
           </div>

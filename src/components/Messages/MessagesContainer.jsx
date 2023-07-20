@@ -1,6 +1,8 @@
 import Messages from "./Messages";
 import { addMessage, onMessageChange } from "../../redux/messagesReducer";
 import { connect } from "react-redux";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 let mapStateToProps = (state) => {
   return {
@@ -16,9 +18,7 @@ let mapDispatchToProps = (dispatch) => {
   };
 };
 
-const SuperMessagesContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withAuthRedirect
 )(Messages);
-
-export default SuperMessagesContainer;
