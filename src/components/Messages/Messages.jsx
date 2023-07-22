@@ -3,13 +3,10 @@ import styles from "./Messages.module.css";
 import MyMessage from "./MyMessage/MyMessage";
 import Person from "./Person/Person";
 import b from "../.././Button.module.css";
+import { Field, reduxForm } from "redux-form";
 
 const Messages = (props) => {
-  let newMessageElement = React.createRef();
-
-  const addMessage = () => props.addMessage();
-
-  let onMessageChange = () => props.updateText(newMessageElement.current.value);
+  const addMessage = (values) => props.addMessage(values.newMessageBody);
 
   return (
     <div className={styles.content}>
@@ -25,19 +22,29 @@ const Messages = (props) => {
           ))}
         </div>
       </div>
-      <div className={b.userInput}>
-        <textarea
-          ref={newMessageElement}
-          onChange={onMessageChange}
-          value={props.state.newMessageText}
-          className={b.text}
-        ></textarea>
-        <button onClick={addMessage} className={b.btn}>
-          Submit
-        </button>
-      </div>
+      <AddMessageFormRedux onSubmit={addMessage} />
     </div>
   );
 };
+
+const AddMessageForm = (props) => {
+  return (
+    <form onSubmit={props.handleSubmit}>
+      <div className={b.userInput}>
+        <Field
+          component="textarea"
+          name="newMessageBody"
+          placeholder="Enter your message"
+          className={b.text}
+        />
+        <button className={b.btn}>Submit</button>
+      </div>
+    </form>
+  );
+};
+
+const AddMessageFormRedux = reduxForm({ form: "messagesAddMessageForm" })(
+  AddMessageForm
+);
 
 export default Messages;

@@ -2,13 +2,12 @@ import React from "react";
 import styles from "./MyPosts.module.css";
 import MyPost from "./SinglePost/SinglePost";
 import b from "../.././Button.module.css";
+import { Field, reduxForm } from "redux-form";
+import { required } from "../../utils/validators";
 
 const MyPosts = (props) => {
-  let newPostElement = React.createRef();
+  const addPost = (values) => props.addPost(values.newPostBody);
 
-  const addPost = () => props.addPost();
-
-  let onPostChange = () => props.updateText(newPostElement.current.value);
   return (
     <div className={styles.wrapper}>
       <div className={styles.postsList}>
@@ -21,19 +20,27 @@ const MyPosts = (props) => {
           />
         ))}
       </div>
-      <div className={b.userInput}>
-        <textarea
-          ref={newPostElement}
-          onChange={onPostChange}
-          value={props.state.newPostText}
-          className={b.text}
-        />
-        <button onClick={addPost} className={b.btn}>
-          Submit
-        </button>
-      </div>
+      <AddPostReduxForm onSubmit={addPost} />
     </div>
   );
 };
+
+const AddPostForm = (props) => {
+  return (
+    <form onSubmit={props.handleSubmit}>
+      <div className={b.userInput}>
+        <Field
+          component="textarea"
+          name="newPostBody"
+          placeholder="Enter your post"
+          className={b.text}
+        />
+        <button className={b.btn}>Submit</button>
+      </div>
+    </form>
+  );
+};
+
+const AddPostReduxForm = reduxForm({ form: "postAddPostForm" })(AddPostForm);
 
 export default MyPosts;
