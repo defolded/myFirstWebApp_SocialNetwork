@@ -6,10 +6,10 @@ import styles from "./Login.module.css";
 const LoginForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
-      <div>
+      <div className={styles.formDiv}>
         <Field placeholder="Email" name="email" component="input" />
       </div>
-      <div>
+      <div className={styles.formDiv}>
         <Field
           placeholder="Password"
           name="password"
@@ -17,7 +17,7 @@ const LoginForm = (props) => {
           type="password"
         />
       </div>
-      <div>
+      <div className={styles.formDiv}>
         <Field type="checkbox" name="rememberMe" component="input" /> remember
         me
       </div>
@@ -26,7 +26,7 @@ const LoginForm = (props) => {
           <h4>{props.error}</h4>
         </div>
       )}
-      <div>
+      <div className={styles.buttonDiv}>
         <button>Login</button>
       </div>
     </form>
@@ -47,7 +47,7 @@ const Login = (props) => {
   }
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <h1>Login</h1>
       <LoginReduxForm onSubmit={onSubmit} />
     </div>

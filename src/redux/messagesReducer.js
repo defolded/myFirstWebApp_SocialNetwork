@@ -20,7 +20,7 @@ const messagesReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_MESSAGE: {
       let newMessage = {
-        id: 5,
+        id: state.messages[state.messages.length - 1].id + 1,
         message: action.text,
       };
 

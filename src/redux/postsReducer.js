@@ -17,7 +17,7 @@ let initialState = {
       message: "I want my Kingdom and Myrcella!",
     },
     {
-      id: 4,
+      id: 3,
       profilePicture:
         "https://www.greekboston.com/wp-content/uploads/2017/12/Socrates.jpg",
       username: "Doran",
@@ -38,13 +38,12 @@ const postsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST: {
       let newPost = {
-        id: 5,
+        id: state.posts[state.posts.length - 1].id + 1,
         profilePicture:
           "https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/Terminator-2-judgement-day.jpg/220px-Terminator-2-judgement-day.jpg",
         username: "test",
         message: action.text,
       };
-
       return {
         ...state,
         posts: [...state.posts, newPost],

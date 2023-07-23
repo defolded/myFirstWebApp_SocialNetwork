@@ -10,7 +10,7 @@ const User = (props) => {
       <h3>{props.username}</h3>
       {props.isFollowed ? (
         <button
-          disabled={props.isFetching === props.userId}
+          disabled={props.isFetching.some((id) => id === props.userId)}
           onClick={() => {
             props.unfollowUser(props.userId);
           }}
@@ -19,7 +19,7 @@ const User = (props) => {
         </button>
       ) : (
         <button
-          disabled={props.isFetching === props.userId}
+          disabled={props.isFetching.some((id) => id === props.userId)}
           onClick={() => {
             props.followUser(props.userId);
           }}

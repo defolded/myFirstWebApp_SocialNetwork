@@ -65,6 +65,7 @@ const Users = (props) => {
           unfollowUser={unfollowUser}
           userId={user.id}
           isFetching={props.isFetching}
+          key={user.id}
         />
       ))}
     </div>
