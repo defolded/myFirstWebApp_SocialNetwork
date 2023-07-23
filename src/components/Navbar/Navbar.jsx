@@ -81,7 +81,18 @@ const Navbar = (props) => {
             Users
           </NavLink>
           {props.isAuth ? (
-            props.login
+            <NavLink
+              onClick={props.logout}
+              to={"login"}
+              style={({ isActive, isPending }) => {
+                return {
+                  opacity: isActive ? 100 : "",
+                  color: isPending ? "red" : "black",
+                };
+              }}
+            >
+              Log out
+            </NavLink>
           ) : (
             <NavLink
               to={"login"}

@@ -21,8 +21,8 @@ class UsersAPIComponent extends React.Component {
       this.props.state.pageSize
     );
 
-    this.props.getProfile(29625);
-    this.props.getUserStatus(29625);
+    this.props.getProfile(this.props.myProfile);
+    this.props.getUserStatus(this.props.myProfile);
   }
 
   setCurrentPage = (currentPage) => {
@@ -58,6 +58,7 @@ let mapStateToProps = (state) => {
     profile: state.profile,
     isFetching: state.isFetching,
     status: state.status,
+    myProfile: state.auth.userId,
   };
 };
 

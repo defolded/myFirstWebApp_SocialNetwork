@@ -40,4 +40,10 @@ export const authAPI = {
   getAuthUserData() {
     return instance.get(`auth/me`).then((res) => res.data);
   },
+  login(email, password, remmemberMe = false) {
+    return instance.post(`auth/login`, { email, password, remmemberMe });
+  },
+  logout() {
+    return instance.delete(`auth/login`);
+  },
 };

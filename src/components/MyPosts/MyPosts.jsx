@@ -33,6 +33,7 @@ const AddPostForm = (props) => {
           component="textarea"
           name="newPostBody"
           placeholder="Enter your post"
+          validate={required}
           className={b.text}
         />
         <button className={b.btn}>Submit</button>
