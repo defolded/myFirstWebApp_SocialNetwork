@@ -14,7 +14,7 @@ let initialState = {
   users: [],
   pageSize: 5,
   totalUsersCount: 0,
-  currentPage: 1,
+  page: 1,
   profile: null,
   status: null,
   isFetching: [],
@@ -50,7 +50,7 @@ const usersReducer = (state = initialState, action) => {
     case SET_CURRENT_PAGE:
       return {
         ...state,
-        currentPage: action.currentPage,
+        page: action.page,
       };
     case SET_TOTAL_USERS_COUNT:
       return {
@@ -94,9 +94,9 @@ export const setUsers = (users) => ({
   users,
 });
 
-export const setCurrentPage = (currentPage) => ({
+export const setCurrentPage = (page) => ({
   type: SET_CURRENT_PAGE,
-  currentPage,
+  page,
 });
 
 export const setTotalUsersCount = (usersCount) => ({
@@ -120,9 +120,10 @@ export const setStatus = (status) => ({
   status,
 });
 
-export const getUsers = (currentPage, pageSize) => {
+export const getUsers = (page, pageSize) => {
   return (dispatch) => {
-    usersAPI.getUsers(currentPage, pageSize).then((res) => {
+    dispatch(setCurrentPage(page));
+    usersAPI.getUsers(page, pageSize).then((res) => {
       dispatch(setUsers(res.items));
       dispatch(setTotalUsersCount(res.totalCount));
     });

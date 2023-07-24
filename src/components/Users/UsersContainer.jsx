@@ -16,17 +16,14 @@ import { compose } from "redux";
 
 class UsersAPIComponent extends React.Component {
   componentDidMount() {
-    this.props.getUsers(
-      this.props.state.currentPage,
-      this.props.state.pageSize
-    );
+    this.props.getUsers(this.props.state.page, this.props.state.pageSize);
 
     this.props.getProfile(this.props.myProfile);
     this.props.getUserStatus(this.props.myProfile);
   }
 
-  setCurrentPage = (currentPage) => {
-    this.props.getUsers(currentPage, this.props.state.pageSize);
+  setCurrentPage = (page) => {
+    this.props.getUsers(page, this.props.state.pageSize);
   };
 
   render() {
@@ -36,7 +33,7 @@ class UsersAPIComponent extends React.Component {
         setCurrentPage={this.setCurrentPage}
         totalUsersCount={this.props.state.totalUsersCount}
         pageSize={this.props.state.pageSize}
-        currentPage={this.props.state.currentPage}
+        page={this.props.state.page}
         profile={this.props.state.profile}
         toggleIsFetching={this.props.toggleIsFetching}
         isFetching={this.props.state.isFetching}
@@ -54,7 +51,7 @@ let mapStateToProps = (state) => {
     state: state.users,
     pageSize: state.pageSize,
     totalUsersCount: state.totalUsersCount,
-    currentPage: state.currentPage,
+    page: state.page,
     profile: state.profile,
     isFetching: state.isFetching,
     status: state.status,
