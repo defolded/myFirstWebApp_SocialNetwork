@@ -24,6 +24,7 @@ const Users = (props) => {
         userName={props.profile.fullName}
         status={props.status}
         setUserStatus={props.setUserStatus}
+        uploadPhoto={props.uploadPhoto}
       />
       <Paginator
         page={props.page}

@@ -7,6 +7,7 @@ import {
   getProfile,
   getUserStatus,
   setUserStatus,
+  uploadPhoto,
 } from "../../redux/usersReducer";
 import { connect } from "react-redux";
 import React from "react";
@@ -41,6 +42,7 @@ class UsersAPIComponent extends React.Component {
         unfollow={this.props.unfollow}
         status={this.props.state.status}
         setUserStatus={this.props.setUserStatus}
+        uploadPhoto={this.props.uploadPhoto}
       />
     );
   }
@@ -69,6 +71,7 @@ export default compose(
     getProfile,
     getUserStatus,
     setUserStatus,
+    uploadPhoto,
   }),
   withAuthRedirect
 )(UsersAPIComponent);

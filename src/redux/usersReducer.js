@@ -9,6 +9,7 @@ const TOGGLE_ISFETCHING = "TOGGLE-ISFETCHING";
 
 const SET_PROFILE = "SET-PROFILE";
 const SET_STATUS = "SET-STATUS";
+const UPLOAD_PHOTO = "UPLOAD-PHOTO";
 
 let initialState = {
   users: [],
@@ -74,6 +75,11 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         status: action.status,
       };
+    case UPLOAD_PHOTO:
+      return {
+        ...state,
+        profile: { ...state.profile, photos: action.photo },
+      };
     default:
       return state;
   }
@@ -118,6 +124,11 @@ export const toggleIsFetching = (userId, status) => ({
 export const setStatus = (status) => ({
   type: SET_STATUS,
   status,
+});
+
+export const uploadPhotoSuccess = (photo) => ({
+  type: UPLOAD_PHOTO,
+  photo,
 });
 
 export const getUsers = (page, pageSize) => {
@@ -175,6 +186,16 @@ export const setUserStatus = (status) => {
     profileAPI.updateStatus(status).then((res) => {
       if (res.data.resultCode === 0) {
         dispatch(setStatus(status));
+      }
+    });
+  };
+};
+
+export const uploadPhoto = (photo) => {
+  return (dispatch) => {
+    profileAPI.uploadPhoto(photo).then((res) => {
+      if (res.data.resultCode === 0) {
+        dispatch(uploadPhotoSuccess(res.data.data.photos));
       }
     });
   };
