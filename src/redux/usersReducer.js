@@ -1,4 +1,4 @@
-import { profileAPI, usersAPI } from "../api/api";
+import { usersAPI } from "../api/api";
 
 const FOLLOW_USER = "FOLLOW-USER";
 const UNFOLLOW_USER = "UNFOLLOW-USER";
@@ -7,17 +7,11 @@ const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
 const SET_TOTAL_USERS_COUNT = "SET-TOTAL-USERS-COUNT";
 const TOGGLE_ISFETCHING = "TOGGLE-ISFETCHING";
 
-const SET_PROFILE = "SET-PROFILE";
-const SET_STATUS = "SET-STATUS";
-const UPLOAD_PHOTO = "UPLOAD-PHOTO";
-
 let initialState = {
   users: [],
   pageSize: 10,
   totalUsersCount: 0,
   page: 1,
-  profile: null,
-  status: null,
   isFetching: [],
 };
 
@@ -58,27 +52,12 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         totalUsersCount: action.usersCount,
       };
-    case SET_PROFILE:
-      return {
-        ...state,
-        profile: action.profile,
-      };
     case TOGGLE_ISFETCHING:
       return {
         ...state,
         isFetching: action.status
           ? [...state.isFetching, action.userId]
           : state.isFetching.filter((id) => id !== action.userId),
-      };
-    case SET_STATUS:
-      return {
-        ...state,
-        status: action.status,
-      };
-    case UPLOAD_PHOTO:
-      return {
-        ...state,
-        profile: { ...state.profile, photos: action.photo },
       };
     default:
       return state;
@@ -110,25 +89,10 @@ export const setTotalUsersCount = (usersCount) => ({
   usersCount,
 });
 
-export const setProfile = (profile) => ({
-  type: SET_PROFILE,
-  profile,
-});
-
 export const toggleIsFetching = (userId, status) => ({
   type: TOGGLE_ISFETCHING,
   userId,
   status,
-});
-
-export const setStatus = (status) => ({
-  type: SET_STATUS,
-  status,
-});
-
-export const uploadPhotoSuccess = (photo) => ({
-  type: UPLOAD_PHOTO,
-  photo,
 });
 
 export const getUsers = (page, pageSize) => {
@@ -161,42 +125,6 @@ export const unfollow = (userId) => {
         dispatch(unfollowUser(userId));
       }
       dispatch(toggleIsFetching(userId, false));
-    });
-  };
-};
-
-export const getProfile = (profileId) => {
-  return (dispatch) => {
-    profileAPI.getProfile(profileId).then((res) => {
-      dispatch(setProfile(res));
-    });
-  };
-};
-
-export const getUserStatus = (profileId) => {
-  return (dispatch) => {
-    profileAPI.getStatus(profileId).then((res) => {
-      dispatch(setStatus(res.data));
-    });
-  };
-};
-
-export const setUserStatus = (status) => {
-  return (dispatch) => {
-    profileAPI.updateStatus(status).then((res) => {
-      if (res.data.resultCode === 0) {
-        dispatch(setStatus(status));
-      }
-    });
-  };
-};
-
-export const uploadPhoto = (photo) => {
-  return (dispatch) => {
-    profileAPI.uploadPhoto(photo).then((res) => {
-      if (res.data.resultCode === 0) {
-        dispatch(uploadPhotoSuccess(res.data.data.photos));
-      }
     });
   };
 };

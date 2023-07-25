@@ -11,6 +11,7 @@ class NavbarContainer extends React.Component {
         isAuth={this.props.isAuth}
         login={this.props.login}
         logout={this.props.logout}
+        userId={this.props.userId}
       />
     );
   }
@@ -19,7 +20,7 @@ class NavbarContainer extends React.Component {
 const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
   login: state.auth.login,
-  profileImageSmall: state.auth.imageSmall,
+  userId: state.auth.userId,
 });
 
 export default compose(connect(mapStateToProps, { getAuthUserData, logout }))(

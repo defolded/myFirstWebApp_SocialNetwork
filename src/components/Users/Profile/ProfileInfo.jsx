@@ -9,7 +9,9 @@ const ProfileInfo = (props) => {
   }, [props.status]);
 
   const activateEditMode = () => {
-    setEditMode(true);
+    if (props.isAuth) {
+      setEditMode(true);
+    }
   };
 
   const deactivateEditMode = () => {

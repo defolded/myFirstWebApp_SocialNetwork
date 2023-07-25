@@ -9,6 +9,7 @@ import LoginContainer from "./components/Login/LoginContainer";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { initializeApp } from "./redux/appReducer";
+import ProfileContainer from "./components/Users/Profile/ProfileContainer";
 
 class App extends React.Component {
   componentDidMount() {
@@ -38,6 +39,10 @@ class App extends React.Component {
                 <Route
                   path="/users"
                   element={<UsersContainer store={this.props.store} />}
+                />
+                <Route
+                  path="/users/:userId"
+                  element={<ProfileContainer store={this.props.store} />}
                 />
                 <Route
                   path="/login"
