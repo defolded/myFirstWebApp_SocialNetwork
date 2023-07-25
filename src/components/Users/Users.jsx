@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./Users.module.css";
 import userPhoto from "../../assets/profile-picture.jpg";
 import User from "./User";
 import Profile from "./Profile";
+import Paginator from "./Paginator";
 
 const Users = (props) => {
   const followUser = (userId) => {
@@ -12,16 +12,6 @@ const Users = (props) => {
   const unfollowUser = (userId) => {
     props.unfollow(userId);
   };
-
-  let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
-  let pages = [];
-
-  for (let i = 1; i <= pageCount; i++) {
-    if (pages.length < 10) {
-      pages.push(i);
-    }
-  }
 
   if (!props.profile) {
     return <></>;
@@ -35,20 +25,13 @@ const Users = (props) => {
         status={props.status}
         setUserStatus={props.setUserStatus}
       />
-      <div>
-        {pages.map((page) => {
-          return (
-            <span
-              className={props.page === page ? styles.selectedPage : ""}
-              onClick={() => {
-                props.setCurrentPage(page);
-              }}
-            >
-              {page}
-            </span>
-          );
-        })}
-      </div>
+      <Paginator
+        page={props.page}
+        setCurrentPage={props.setCurrentPage}
+        totalUsersCount={props.totalUsersCount}
+        pageSize={props.pageSize}
+      />
+
       {props.users.map((user) => (
         <User
           profilePicture={
