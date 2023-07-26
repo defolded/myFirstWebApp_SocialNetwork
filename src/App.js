@@ -18,7 +18,7 @@ class App extends React.Component {
 
   render() {
     if (!this.props.init) {
-      return <h3>hey</h3>;
+      return <h3>Please wait...</h3>;
     }
 
     return (

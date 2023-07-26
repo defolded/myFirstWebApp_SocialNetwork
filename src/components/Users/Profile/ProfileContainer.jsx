@@ -28,13 +28,17 @@ const ProfileContainer = (props) => {
     <div>
       <Profile
         uploadPhoto={props.uploadPhoto}
-        userPhoto={props.profile.photos.small}
+        userPhotoSmall={props.profile.photos.small}
+        userPhotoLarge={props.profile.photos.large}
         setUserStatus={props.setUserStatus}
         status={props.status}
         userName={props.profile.fullName}
         aboutMe={props.profile.aboutMe}
         userId={props.profile.userId}
         loggedUser={props.loggedUser}
+        lookingForAJob={props.profile.lookingForAJob}
+        lookingForAJobDescription={props.profile.lookingForAJobDescription}
+        contacts={props.profile.contacts}
       />
     </div>
   );

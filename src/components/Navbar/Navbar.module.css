@@ -91,7 +91,7 @@
   transform-origin: bottom left;
 }
 
-/* Meida Queries */
+/* Media Queries */
 @media screen and (max-width: 512px) {
   .nav {
     padding-right: 0;

@@ -9,11 +9,6 @@ const Textarea = ({ input, meta, ...props }) => {
         {...props}
         className={meta.touched && meta.error ? styles.errorText : styles.text}
       />
-      <button
-        className={meta.touched && meta.error ? styles.errorBtn : styles.btn}
-      >
-        Submit
-      </button>
     </div>
   );
 };

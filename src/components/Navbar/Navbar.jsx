@@ -8,10 +8,7 @@ const Navbar = (props) => {
       <div className={styles.wrapper}>
         <div className={styles.profile}>
           <NavLink to={props.userId ? `/users/${props.userId}` : `/login`}>
-            <img
-              src="https://uploads6.wikiart.org/images/salvador-dali/the-persistence-of-memory-1931.jpg!Large.jpg"
-              alt="profile"
-            />
+            {/* <img src="https://uploads6.wikiart.org/images/salvador-dali/the-persistence-of-memory-1931.jpg!Large.jpg" alt="profile" /> */}
             <p>{props.login}</p>
           </NavLink>
         </div>
