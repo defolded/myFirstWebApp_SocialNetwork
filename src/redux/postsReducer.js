@@ -41,7 +41,7 @@ const postsReducer = (state = initialState, action) => {
         id: state.posts[state.posts.length - 1].id + 1,
         profilePicture:
           "https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/Terminator-2-judgement-day.jpg/220px-Terminator-2-judgement-day.jpg",
-        username: "test",
+        username: "add hoc to show username",
         message: action.text,
       };
       return {

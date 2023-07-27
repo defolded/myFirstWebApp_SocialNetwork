@@ -7,6 +7,7 @@ import { addMessage } from "../../redux/messagesReducer";
 let mapStateToProps = (state) => {
   return {
     state: state.messages,
+    isAuth: state.auth.isAuth,
   };
 };
 

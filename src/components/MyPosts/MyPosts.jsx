@@ -20,7 +20,7 @@ const MyPosts = (props) => {
           />
         ))}
       </div>
-      <AddPostReduxForm onSubmit={addPost} />
+      {props.isAuth ? <AddPostReduxForm onSubmit={addPost} /> : ""}
     </div>
   );
 };

@@ -6,6 +6,7 @@ import { compose } from "redux";
 let mapStateToProps = (state) => {
   return {
     state: state.posts,
+    isAuth: state.auth.isAuth,
   };
 };
 

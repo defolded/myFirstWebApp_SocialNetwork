@@ -22,7 +22,7 @@ const Messages = (props) => {
           ))}
         </div>
       </div>
-      <AddMessageFormRedux onSubmit={addMessage} />
+      {props.isAuth ? <AddMessageFormRedux onSubmit={addMessage} /> : ""}
     </div>
   );
 };
