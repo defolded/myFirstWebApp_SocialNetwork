@@ -10,6 +10,7 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { initializeApp } from "./redux/appReducer";
 import ProfileContainer from "./components/Users/Profile/ProfileContainer";
+import NewsContainer from "./components/News/NewsContainer";
 
 class App extends React.Component {
   componentDidMount() {
@@ -35,6 +36,10 @@ class App extends React.Component {
                 <Route
                   path="/messages/*"
                   element={<MessagesContainer store={this.props.store} />}
+                />
+                <Route
+                  path="/news"
+                  element={<NewsContainer store={this.props.store} />}
                 />
                 <Route
                   path="/users"

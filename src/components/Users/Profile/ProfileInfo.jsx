@@ -8,8 +8,12 @@ const ProfileInfo = (props) => {
     setStatus(props.status);
   }, [props.status]);
 
+  useEffect(() => {
+    if (props.editBtnState) setEditMode(true);
+  }, [props.editBtnState]);
+
   const activateEditMode = () => {
-    if (props.isAuth) {
+    if (props.isAuth && props.editBtnState) {
       setEditMode(true);
     }
   };

@@ -47,6 +47,7 @@ const Profile = (props) => {
           ></div>
         </div>
         <ProfileInfo
+          editBtnState={editMode}
           status={props.status}
           setUserStatus={props.setUserStatus}
           isAuth={isAuth}
