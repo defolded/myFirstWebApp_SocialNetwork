@@ -46,40 +46,28 @@ export const uploadPhotoSuccess = (photo) => ({
   photo,
 });
 
-export const getProfile = (profileId) => {
-  return (dispatch) => {
-    profileAPI.getProfile(profileId).then((res) => {
-      dispatch(setProfile(res));
-    });
-  };
+export const getProfile = (profileId) => async (dispatch) => {
+  let res = await profileAPI.getProfile(profileId);
+  dispatch(setProfile(res));
 };
 
-export const getUserStatus = (profileId) => {
-  return (dispatch) => {
-    profileAPI.getStatus(profileId).then((res) => {
-      dispatch(setStatus(res.data));
-    });
-  };
+export const getUserStatus = (profileId) => async (dispatch) => {
+  let res = await profileAPI.getStatus(profileId);
+  dispatch(setStatus(res.data));
 };
 
-export const setUserStatus = (status) => {
-  return (dispatch) => {
-    profileAPI.updateStatus(status).then((res) => {
-      if (res.data.resultCode === 0) {
-        dispatch(setStatus(status));
-      }
-    });
-  };
+export const setUserStatus = (status) => async (dispatch) => {
+  let res = await profileAPI.updateStatus(status);
+  if (res.data.resultCode === 0) {
+    dispatch(setStatus(status));
+  }
 };
 
-export const uploadPhoto = (photo) => {
-  return (dispatch) => {
-    profileAPI.uploadPhoto(photo).then((res) => {
-      if (res.data.resultCode === 0) {
-        dispatch(uploadPhotoSuccess(res.data.data.photos));
-      }
-    });
-  };
+export const uploadPhoto = (photo) => async (dispatch) => {
+  let res = await profileAPI.uploadPhoto(photo);
+  if (res.data.resultCode === 0) {
+    dispatch(uploadPhotoSuccess(res.data.data.photos));
+  }
 };
 
 export default usersReducer;
