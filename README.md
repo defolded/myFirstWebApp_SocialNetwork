@@ -5,7 +5,7 @@ Hello!
 
 ## Setting Up
 
-This is the frontend, and will also need the backend https://github.com/explorejs/handbook-node running locally
+This is the frontend, and will also need the backend https://github.com/explorejs/handbook-node running locally.
 
 ## Env
 
