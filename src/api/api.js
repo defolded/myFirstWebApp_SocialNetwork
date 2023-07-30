@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useDebugValue } from "react";
 
 const instance = axios.create({
   baseURL: "https://social-network.samuraijs.com/api/1.0/",
@@ -45,6 +46,10 @@ export const profileAPI = {
       },
     });
   },
+
+  sendProfile(profile) {
+    return instance.put(`profile`, profile);
+  },
 };
 
 export const authAPI = {
@@ -56,5 +61,11 @@ export const authAPI = {
   },
   logout() {
     return instance.delete(`auth/login`);
+  },
+};
+
+export const securityAPI = {
+  getCaptcha() {
+    return instance.get(`security/get-captcha-url`);
   },
 };

@@ -1,8 +1,10 @@
+import { stopSubmit } from "redux-form";
 import { profileAPI } from "../api/api";
 
 const SET_PROFILE = "SET-PROFILE";
 const SET_STATUS = "SET-STATUS";
 const UPLOAD_PHOTO = "UPLOAD-PHOTO";
+const SEND_PROFILE = "SEND-PROFILE";
 
 let initialState = {
   profile: null,
@@ -46,6 +48,8 @@ export const uploadPhotoSuccess = (photo) => ({
   photo,
 });
 
+export const sendProfileSuccess = () => ({ type: SEND_PROFILE });
+
 export const getProfile = (profileId) => async (dispatch) => {
   let res = await profileAPI.getProfile(profileId);
   dispatch(setProfile(res));
@@ -67,6 +71,25 @@ export const uploadPhoto = (photo) => async (dispatch) => {
   let res = await profileAPI.uploadPhoto(photo);
   if (res.data.resultCode === 0) {
     dispatch(uploadPhotoSuccess(res.data.data.photos));
+  }
+};
+
+export const sendProfile = (profile) => async (dispatch, getState) => {
+  const userId = getState().auth.userId;
+
+  let res = await profileAPI.sendProfile(profile);
+  if (res.data.resultCode === 0) {
+    dispatch(getProfile(userId));
+  } else {
+    dispatch(
+      stopSubmit("edit-profile", {
+        _error:
+          res.data.messages.length > 0
+            ? res.data.messages[0]
+            : "Something went wrong. Try again",
+      })
+    );
+    return Promise.reject(res.data.messages[0]);
   }
 };
 

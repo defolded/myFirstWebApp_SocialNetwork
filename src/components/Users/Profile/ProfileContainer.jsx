@@ -3,6 +3,7 @@ import {
   getUserStatus,
   setUserStatus,
   uploadPhoto,
+  sendProfile,
 } from "../../../redux/profileReducer";
 import { connect } from "react-redux";
 import React, { useEffect } from "react";
@@ -39,6 +40,8 @@ const ProfileContainer = (props) => {
         lookingForAJob={props.profile.lookingForAJob}
         lookingForAJobDescription={props.profile.lookingForAJobDescription}
         contacts={props.profile.contacts}
+        profile={props.profile}
+        sendProfile={props.sendProfile}
       />
     </div>
   );
@@ -58,6 +61,7 @@ export default compose(
     getUserStatus,
     setUserStatus,
     uploadPhoto,
+    sendProfile,
   }),
   withAuthRedirect
 )(ProfileContainer);

@@ -26,6 +26,7 @@ const LoginForm = (props) => {
           <h4>{props.error}</h4>
         </div>
       )}
+      {props.captchaURL && <img src={props.captchaURL} alt="captcha" />}
       <div className={styles.buttonDiv}>
         <button>Login</button>
       </div>
@@ -49,7 +50,7 @@ const Login = (props) => {
   return (
     <div className={styles.wrapper}>
       <h1>Login</h1>
-      <LoginReduxForm onSubmit={onSubmit} />
+      <LoginReduxForm onSubmit={onSubmit} captchaURL={props.captchaURL} />
     </div>
   );
 };
