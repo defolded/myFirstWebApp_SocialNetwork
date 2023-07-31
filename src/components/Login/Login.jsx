@@ -2,6 +2,10 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
 import styles from "./Login.module.css";
+import { connect } from "react-redux";
+import { login } from "../../redux/authReducer";
+import { required } from "../../utils/validators";
+import { compile } from "nth-check";
 
 const LoginForm = (props) => {
   return (
@@ -26,7 +30,15 @@ const LoginForm = (props) => {
           <h4>{props.error}</h4>
         </div>
       )}
-      {props.captchaURL && <img src={props.captchaURL} alt="captcha" />}
+      {props.captchaUrl && <img src={props.captchaUrl} alt="captcha" />}
+      {props.captchaUrl && (
+        <Field
+          placeholder="Enter captcha"
+          name="captcha"
+          validate={required}
+          component="input"
+        />
+      )}
       <div className={styles.buttonDiv}>
         <button>Login</button>
       </div>
@@ -40,7 +52,12 @@ const LoginReduxForm = reduxForm({
 
 const Login = (props) => {
   const onSubmit = (formData) => {
-    props.login(formData.email, formData.password, formData.rememberMe);
+    props.login(
+      formData.email,
+      formData.password,
+      formData.rememberMe,
+      formData.captcha
+    );
   };
 
   if (props.state.isAuth) {
@@ -50,9 +67,15 @@ const Login = (props) => {
   return (
     <div className={styles.wrapper}>
       <h1>Login</h1>
-      <LoginReduxForm onSubmit={onSubmit} captchaURL={props.captchaURL} />
+      <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.state.captchaUrl} />
     </div>
   );
 };
 
-export default Login;
+let mapStateToProps = (state) => {
+  return {
+    state: state.auth,
+  };
+};
+
+export default connect(mapStateToProps, { login })(Login);

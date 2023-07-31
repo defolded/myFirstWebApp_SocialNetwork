@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useDebugValue } from "react";
 
 const instance = axios.create({
   baseURL: "https://social-network.samuraijs.com/api/1.0/",
@@ -56,8 +55,13 @@ export const authAPI = {
   getAuthUserData() {
     return instance.get(`auth/me`).then((res) => res.data);
   },
-  login(email, password, remmemberMe = false) {
-    return instance.post(`auth/login`, { email, password, remmemberMe });
+  login(email, password, remmemberMe = false, captcha = null) {
+    return instance.post(`auth/login`, {
+      email,
+      password,
+      remmemberMe,
+      captcha,
+    });
   },
   logout() {
     return instance.delete(`auth/login`);
