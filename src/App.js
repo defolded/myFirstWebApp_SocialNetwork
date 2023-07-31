@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { initializeApp } from "./redux/appReducer";
 import ProfileContainer from "./components/Users/Profile/ProfileContainer";
 import NewsContainer from "./components/News/NewsContainer";
+import Preloader from "./components/common/Preloader/Preloader";
 
 class App extends React.Component {
   componentDidMount() {
@@ -19,7 +20,7 @@ class App extends React.Component {
 
   render() {
     if (!this.props.init) {
-      return <h3>Please wait...</h3>;
+      return <Preloader />;
     }
 
     return (
