@@ -20,7 +20,6 @@ const Profile = (props) => {
     <div>
       {editMode ? (
         <EditProfile
-          editMode={editMode}
           toggleEditMode={toggleEditMode}
           isAuth={isAuth}
           userPhotoLarge={props.userPhotoLarge}
@@ -28,16 +27,21 @@ const Profile = (props) => {
           aboutMe={props.aboutMe}
           lookingForAJobDescription={props.lookingForAJobDescription}
           onSubmit={onSubmit}
+          contacts={props.contacts}
+          status={props.status}
+          setUserStatus={props.setUserStatus}
         />
       ) : (
         <ShowProfile
-          editMode={editMode}
           toggleEditMode={toggleEditMode}
           isAuth={isAuth}
           userPhotoLarge={props.userPhotoLarge}
           userName={props.userName}
           aboutMe={props.aboutMe}
           lookingForAJobDescription={props.lookingForAJobDescription}
+          contacts={props.contacts}
+          status={props.status}
+          setUserStatus={props.setUserStatus}
         />
       )}
     </div>

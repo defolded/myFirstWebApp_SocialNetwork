@@ -21,20 +21,19 @@ const ShowProfile = (props) => {
             className={props.lookingForAJob ? styles.greenDot : styles.redDot}
           />
         </div>
-        {/* <ProfileInfo
-          editBtnState={props.editMode}
+        <ProfileInfo
           status={props.status}
           setUserStatus={props.setUserStatus}
-          isAuth={isAuth}
-        /> */}
+          isAuth={props.isAuth}
+        />
       </div>
       <div className={styles.aboutMeContainer}>
         <h2>About me</h2>
         <p className={props.aboutMe ? "" : styles.empty}>
-          {props.aboutMe} {props.lookingForAJobDescription}
+          {props.aboutMe} I am very good at: {props.lookingForAJobDescription}
         </p>
       </div>
-      {/* <SocialMediaIcons /> */}
+      <SocialMediaIcons contacts={props.contacts} />
     </div>
   );
 };

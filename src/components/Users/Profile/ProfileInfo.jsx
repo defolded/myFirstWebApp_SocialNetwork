@@ -6,14 +6,11 @@ const ProfileInfo = (props) => {
 
   useEffect(() => {
     setStatus(props.status);
+    props.editMode && setEditMode(true);
   }, [props.status]);
 
-  useEffect(() => {
-    if (props.editBtnState) setEditMode(true);
-  }, [props.editBtnState]);
-
   const activateEditMode = () => {
-    if (props.isAuth && props.editBtnState) {
+    if (props.isAuth) {
       setEditMode(true);
     }
   };

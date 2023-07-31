@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Profile.module.css";
-import SocialMediaIcons from "./SocialMediaIcons";
 import { Field, reduxForm } from "redux-form";
+import ProfileInfo from "./ProfileInfo";
 
 const EditProfile = (props) => {
   const onPhotoUpload = (photo) => {
@@ -26,12 +26,11 @@ const EditProfile = (props) => {
             <Field name="lookingForAJob" component="input" type="checkbox" />
           </div>
         </div>
-        {/* <ProfileInfo
-          editBtnState={editMode}
+        <ProfileInfo
+          editMode={true}
           status={props.status}
           setUserStatus={props.setUserStatus}
-          isAuth={isAuth}
-        /> */}
+        />
       </div>
       <div className={styles.aboutMeContainer}>
         <h2>About me</h2>
@@ -42,13 +41,14 @@ const EditProfile = (props) => {
           component="input"
         />
       </div>
-      {/* <SocialMediaIcons /> */}
     </form>
   );
 };
 
 const EditProfileWithForm = reduxForm({
-  form: "edit-profile",
+  form: "edit-profile", 
+  enableReinitialize: true, 
+  estroyOnUnmount: false
 })(EditProfile);
 
 export default EditProfileWithForm;
