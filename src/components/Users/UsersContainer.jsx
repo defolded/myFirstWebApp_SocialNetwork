@@ -31,6 +31,7 @@ class UsersAPIComponent extends React.Component {
         isFetching={this.props.state.isFetching}
         follow={this.props.follow}
         unfollow={this.props.unfollow}
+        isFetchingUsersPage={this.props.isFetchingUsersPage}
       />
     );
   }
@@ -43,6 +44,7 @@ let mapStateToProps = (state) => {
     totalUsersCount: state.totalUsersCount,
     page: state.page,
     isFetching: state.isFetching,
+    isFetchingUsersPage: state.users.isFetchingUsersPage,
   };
 };
 

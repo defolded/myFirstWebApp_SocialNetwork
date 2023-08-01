@@ -1,7 +1,12 @@
 import React from "react";
 import NewsEntry from "./NewsEntry";
+import Preloader from "../common/Preloader/Preloader";
 
 const News = (props) => {
+  if (props.state.isFetching) {
+    return <Preloader />;
+  }
+
   return (
     <div>
       {props.state.articles.map((newEntry) => {

@@ -42,6 +42,7 @@ const ProfileContainer = (props) => {
         contacts={props.profile.contacts}
         profile={props.profile}
         sendProfile={props.sendProfile}
+        isFetching={props.isFetching}
       />
     </div>
   );
@@ -51,6 +52,7 @@ let mapStateToProps = (state) => {
   return {
     profile: state.profile.profile,
     status: state.profile.status,
+    isFetching: state.profile.isFetching,
     loggedUser: state.auth.userId,
   };
 };

@@ -5,10 +5,12 @@ const SET_PROFILE = "SET-PROFILE";
 const SET_STATUS = "SET-STATUS";
 const UPLOAD_PHOTO = "UPLOAD-PHOTO";
 const SEND_PROFILE = "SEND-PROFILE";
+const TOGGLE_FETCHING = "TOGGLE-FETCHING";
 
 let initialState = {
   profile: null,
   status: null,
+  isFetching: false,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -27,6 +29,11 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         profile: { ...state.profile, photos: action.photo },
+      };
+    case TOGGLE_FETCHING:
+      return {
+        ...state,
+        isFetching: action.state,
       };
     default:
       return state;
@@ -50,9 +57,16 @@ export const uploadPhotoSuccess = (photo) => ({
 
 export const sendProfileSuccess = () => ({ type: SEND_PROFILE });
 
+export const toggleIsFetchingSuccess = (state) => ({
+  type: TOGGLE_FETCHING,
+  state,
+});
+
 export const getProfile = (profileId) => async (dispatch) => {
+  dispatch(toggleIsFetchingSuccess(true));
   let res = await profileAPI.getProfile(profileId);
   dispatch(setProfile(res));
+  dispatch(toggleIsFetchingSuccess(false));
 };
 
 export const getUserStatus = (profileId) => async (dispatch) => {

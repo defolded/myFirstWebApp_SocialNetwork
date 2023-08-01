@@ -23,30 +23,32 @@ const Paginator = (props) => {
   );
 
   return (
-    <div>
+    <div className={styles.container}>
       {portionNumber > 1 && (
         <button onClick={() => setPortionNumber(portionNumber - 1)}>
           PREV
         </button>
       )}
 
-      {pages
-        .filter(
-          (p) => p >= leftPortionPageNumber && p <= rightPortionPageNumber
-        )
-        .map((p) => {
-          return (
-            <span
-              className={props.page === p ? styles.selectedPage : ""}
-              onClick={() => {
-                props.setCurrentPage(p);
-              }}
-              key={p}
-            >
-              {p}
-            </span>
-          );
-        })}
+      <div className={styles.pagination}>
+        {pages
+          .filter(
+            (p) => p >= leftPortionPageNumber && p <= rightPortionPageNumber
+          )
+          .map((p) => {
+            return (
+              <span
+                className={props.page === p ? styles.active : ""}
+                onClick={() => {
+                  props.setCurrentPage(p);
+                }}
+                key={p}
+              >
+                {p}
+              </span>
+            );
+          })}
+      </div>
 
       {portionCount > portionNumber && (
         <button onClick={() => setPortionNumber(portionNumber + 1)}>

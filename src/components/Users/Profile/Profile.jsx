@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-
 import EditProfile from "./EditProfile";
 import ShowProfile from "./ShowProfile";
+import Preloader from "../../common/Preloader/Preloader";
 
 const Profile = (props) => {
   const [editMode, setEditMode] = useState(false);
@@ -16,10 +16,15 @@ const Profile = (props) => {
     props.sendProfile(formData).then(() => toggleEditMode());
   };
 
+  if (props.isFetching) {
+    return <Preloader />;
+  }
+
   return (
     <div>
       {editMode ? (
         <EditProfile
+          initialValues={props.profile}
           toggleEditMode={toggleEditMode}
           isAuth={isAuth}
           userPhotoLarge={props.userPhotoLarge}

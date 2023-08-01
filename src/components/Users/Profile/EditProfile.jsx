@@ -9,7 +9,6 @@ const EditProfile = (props) => {
       props.uploadPhoto(photo.target.files[0]);
     }
   };
-
   return (
     <form onSubmit={props.handleSubmit}>
       <div className={styles.editContainer}>
@@ -46,9 +45,9 @@ const EditProfile = (props) => {
 };
 
 const EditProfileWithForm = reduxForm({
-  form: "edit-profile", 
-  enableReinitialize: true, 
-  estroyOnUnmount: false
+  form: "edit-profile",
+  enableReinitialize: true,
+  estroyOnUnmount: false,
 })(EditProfile);
 
 export default EditProfileWithForm;

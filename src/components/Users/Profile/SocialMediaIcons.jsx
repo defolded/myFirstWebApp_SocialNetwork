@@ -12,56 +12,56 @@ import {
 import { Link } from "react-router-dom";
 import styles from "./Profile.module.css";
 
-const SocialMediaIcons = (props) => {
+const SocialMediaIcons = ({ contacts }) => {
   return (
     <IconContext.Provider value={{ color: "black", size: "1.4em" }}>
       <div className={styles.contacts}>
         <Link
-          to={{ pathname: props.contacts.facebook }}
+          to={contacts.facebook}
           target="_blank"
-          className={props.contacts.facebook ? "" : styles.empty}
+          className={contacts.facebook ? "" : styles.empty}
         >
           <BsFacebook />
         </Link>
         <Link
-          to={{ pathname: props.contacts.website }}
+          to={contacts.website}
           target="_blank"
-          className={props.contacts.website ? "" : styles.empty}
+          className={contacts.website ? "" : styles.empty}
         >
           <BsLink45Deg />
         </Link>
         <Link
-          to={{ pathname: props.contacts.vk }}
+          to={contacts.vk}
           target="_blank"
-          className={props.contacts.vk ? "" : styles.empty}
+          className={contacts.vk ? "" : styles.empty}
         >
           <SlSocialVkontakte />
         </Link>
         <Link
-          to={{ pathname: props.contacts.twitter }}
+          to={contacts.twitter}
           target="_blank"
-          className={props.contacts.twitter ? "" : styles.empty}
+          className={contacts.twitter ? "" : styles.empty}
         >
           <BsTwitter />
         </Link>
         <Link
-          to={{ pathname: props.contacts.instagram }}
+          to={contacts.instagram}
           target="_blank"
-          className={props.contacts.instagram ? "" : styles.empty}
+          className={contacts.instagram ? "" : styles.empty}
         >
           <BsInstagram />
         </Link>
         <Link
-          to={{ pathname: props.contacts.youtube }}
+          to={contacts.youtube}
           target="_blank"
-          className={props.contacts.youtube ? "" : styles.empty}
+          className={contacts.youtube ? "" : styles.empty}
         >
           <BsYoutube />
         </Link>
         <Link
-          to={{ pathname: props.contacts.github }}
+          to={contacts.github}
           target="_blank"
-          className={props.contacts.github ? "" : styles.empty}
+          className={contacts.github ? "" : styles.empty}
         >
           <BsGithub />
         </Link>

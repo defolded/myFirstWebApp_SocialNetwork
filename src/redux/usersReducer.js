@@ -6,13 +6,15 @@ const SET_USERS = "SET-USERS";
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
 const SET_TOTAL_USERS_COUNT = "SET-TOTAL-USERS-COUNT";
 const TOGGLE_ISFETCHING = "TOGGLE-ISFETCHING";
+const TOGGLE_ISFETCHING_USERS_PAGE = "TOGGLE-ISFETCHING-USERS-PAGE";
 
 let initialState = {
   users: [],
-  pageSize: 10,
+  pageSize: 32,
   totalUsersCount: 0,
   page: 1,
   isFetching: [],
+  isFetchingUsersPage: false,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -59,6 +61,11 @@ const usersReducer = (state = initialState, action) => {
           ? [...state.isFetching, action.userId]
           : state.isFetching.filter((id) => id !== action.userId),
       };
+    case TOGGLE_ISFETCHING_USERS_PAGE:
+      return {
+        ...state,
+        isFetchingUsersPage: action.state,
+      };
     default:
       return state;
   }
@@ -95,11 +102,18 @@ export const toggleIsFetching = (userId, status) => ({
   status,
 });
 
+export const toggleIsFetchingUsersPage = (state) => ({
+  type: TOGGLE_ISFETCHING_USERS_PAGE,
+  state,
+});
+
 export const getUsers = (page, pageSize) => async (dispatch) => {
+  dispatch(toggleIsFetchingUsersPage(true));
   dispatch(setCurrentPage(page));
   let res = await usersAPI.getUsers(page, pageSize);
   dispatch(setUsers(res.items));
   dispatch(setTotalUsersCount(res.totalCount));
+  dispatch(toggleIsFetchingUsersPage(false));
 };
 
 export const follow = (userId) => async (dispatch) => {
@@ -113,7 +127,7 @@ export const follow = (userId) => async (dispatch) => {
 
 export const unfollow = (userId) => async (dispatch) => {
   dispatch(toggleIsFetching(userId, true));
-  let res = usersAPI.unfollow(userId);
+  let res = await usersAPI.unfollow(userId);
   if (res.data.resultCode === 0) {
     dispatch(unfollowUser(userId));
   }

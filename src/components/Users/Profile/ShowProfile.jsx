@@ -2,6 +2,7 @@ import React from "react";
 import ProfileInfo from "./ProfileInfo";
 import styles from "./Profile.module.css";
 import SocialMediaIcons from "./SocialMediaIcons";
+import userPhoto from "../../../assets/profile-picture.jpg";
 
 const ShowProfile = (props) => {
   return (
@@ -14,7 +15,10 @@ const ShowProfile = (props) => {
         </div>
       )}
       <div className={styles.headingContainer}>
-        <img src={props.userPhotoLarge} alt="user" />
+        <img
+          src={props.userPhotoLarge ? props.userPhotoLarge : userPhoto}
+          alt="user"
+        />
         <div className={styles.fullName}>
           <h1>{props.userName}</h1>
           <div
